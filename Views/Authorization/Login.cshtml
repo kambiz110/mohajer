@@ -1,0 +1,126 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<<<<<<< HEAD
+@addTagHelper *, DNTCaptcha.Core
+=======
+>>>>>>> 5071e1079f049e7fcdd03a62488ac0618fb290e3
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@model Mohajer.Service.User.Dto.InputLoginDto
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="cover-user bg-white">
+    <div class="container-fluid">
+        <div class="row position-relative">
+            <div class="col-lg-4 cover-my-30 order-2">
+                <div class="cover-user-img d-flex align-items-center">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <div class="login-page position-relative" style="z-index: 1;font-family:Tahoma">
+
+
+
+                                <div class="text-center">
+                                    <h4 class="mb-4">ورود</h4>
+                                </div>
+                                <form class="login-form" asp-action="Login" method="post">
+
+                                    <div class="row" style="font-family:Tahoma;">
+
+
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group position-relative">
+                                                <label>ایمیل شما <span class="text-danger">*</span></label>
+                                                <i class="mdi mdi-account ml-3 icons"></i>
+                                                <input type="Email" class="form-control pl-5" placeholder="ایمیل" name="email" required="">
+                                            </div>
+                                        </div><!--end col-->
+
+
+                                        <div class="col-lg-12" style="font-family:Tahoma;">
+
+
+                                            <div class="form-group position-relative">
+                                                <label>رمز عبور <span class="text-danger">*</span></label>
+                                                <i class="mdi mdi-key ml-3 icons"></i>
+                                                <input type="password" name="Password" class="form-control pl-5" placeholder="رمز" required="">
+                                            </div>
+                                        </div><!--end col-->
+
+                                        <div class="col-md-12" style="font-family:Tahoma;">
+                                            <div class="form-group">
+                                                <div class="input-group text-right col-12 col-md-12">
+
+                                                    <dnt-captcha asp-captcha-generator-max="50"
+                                                                 asp-captcha-generator-min="10"
+                                                                 asp-captcha-generator-language="Persian"
+                                                                 asp-captcha-generator-display-mode="SumOfTwoNumbersToWords"
+                                                                 asp-use-relative-urls="true"
+                                                                 asp-placeholder="عبارت را محاسبه و وارد نمائید"
+                                                                 asp-validation-error-message="عبارت را محاسبه و وارد نمائید"
+                                                                 asp-font-name="Tahoma"
+                                                                 asp-font-size="20"
+                                                                 asp-fore-color="#333333"
+                                                                 asp-back-color="#F7F9B8"
+                                                                 asp-text-box-class="text-box form-control"
+                                                                 asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'></span></span>{0}"
+                                                                 asp-validation-message-class="text-danger"
+                                                                 asp-refresh-button-class="fas fa-redo btn-sm"
+                                                                 asp-use-noise="false"
+                                                                 asp-dir="rtl" />
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <p class="float-right forgot-pass"><a href="page-cover-re-password.html" class="text-dark font-weight-bold">فراموشی رمز عبور؟</a></p>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="RemimberMy" name="RemimberMy">
+                                                    <label class="custom-control-label" for="customCheck1">مرا به خاطر بسپار</label>
+
+                                                </div>
+                                            </div>
+                                        </div><!--end col-->
+
+
+
+                                        <div class="col-lg-12 mb-0" style="font-family:Tahoma;">
+                                            <button class="btn btn-primary w-100">ورود</button>
+                                        </div><!--end col-->
+
+                                        <div class="col-12 text-center" style="font-family:Tahoma;">
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">حساب ندارید؟</small> <a href="#" class="text-dark font-weight-bold">ثبت نام</a></p>
+
+                                        </div><!--end row-->
+                                </div></form>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div> <!-- end about detail -->
+            </div> <!-- end col -->
+
+
+            <div class="col-lg-8 offset-lg-4 padding-less img order-1 w3-round-large" style="background-image: url('/Images/Publice/login04.jpg')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
+        </div><!--end row-->
+    </div><!--end container fluid-->
+</section><!--end section-->
+@section headerNavigation {
+    @{await Html.RenderPartialAsync("_NavigationHeader");}
+}
+@section footer {
+    @{await Html.RenderPartialAsync("_Footer");}
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

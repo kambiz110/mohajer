@@ -1,0 +1,35 @@
+﻿@using Mohajer.Entity
+@model IEnumerable<Prodoct>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Mohajer.Useful.Static
+
+@{
+
+    if (Model != null && Model.Count() > 0)
+    {
+        <section class="section" style="margin-top:66px">
+            <div >
+                <div class="slideshow slidernooreshohada" style="text-align: right;direction: rtl; ">
+                    @foreach (var item in Model)
+                    {
+                        <div>
+                            <img src="@item.Image" alt="Image 1 from http://jqueryscript.net/">
+                            <div class="text_content">
+                                <a href="/Blog/BlogDetail/@item.Id">
+                                    <h3 class="text-shadow:2px"><span style="background-color:dimgray;border-radius:5px;" class="p-2"> @item.Title</span> </h3>
+                                </a>
+                               
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+
+
+
+
+

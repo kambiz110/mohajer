@@ -1,0 +1,68 @@
+﻿@using Mohajer.Service.Product.Dto;
+@model IEnumerable<ProductForHomePageDto>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.Useful.Static
+@{
+}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <ul class="col container-filter list-unstyled categories-filter text-center" id="filter">
+                <li class="list-inline-item"><a class="categories border d-block text-dark rounded active" data-filter="*">همه</a></li>
+                <li class="list-inline-item"><a class="categories border d-block text-dark rounded" data-filter=".brandImage">عکس</a></li>
+                <li class="list-inline-item"><a class="categories border d-block text-dark rounded" data-filter=".brandVideo">نماهنگ</a></li>
+                <li class="list-inline-item"><a class="categories border d-block text-dark rounded" data-filter=".brandMuzice">آوا</a></li>
+
+            </ul>
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="container-fluid">
+        <div class="row container-grid projects-wrapper">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    var filter = "brandImage";
+                    if (item.CountentType == 1)
+                    {
+                        filter = "brandVideo";
+                    }
+                    else if (item.CountentType == 2)
+                    {
+                        filter = "brandMuzice";
+                    }
+                    else
+                    {
+                        filter = "brandImage";
+                    }
+                    <div class="col-lg-3 col-md-6 spacing @filter">
+                        <div class="work-container position-relative d-block overflow-hidden rounded mt-3">
+                            <a class="mfp-image d-inline-block" href="@item.Image" title="@item.Title">
+                                <img src="@item.ImageResized" class="img-fluid rounded" alt="work-image">
+                                <div class="overlay-work"></div>
+                            </a>
+                            @*<div class="content personal-port w3-display-topleft w3-margin-top">
+                                <img src="~/Images/Publice/LogoWeb.png" class="w3-image w3-round-large w3-sand" style="width:50px;" />
+                            </div>*@
+                            <div class="content personal-port">
+                                <a asp-area="" asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@item.Id" class="title text-white d-block font-weight-bold">@item.Title</a>
+
+                            </div>
+                            <div class="client personal-port">
+                                @*<small class="text-light user d-block"><i class="mdi mdi-account"></i> @item.user.First_Name &nbsp;@item.user.Last_Name </small>*@
+                                <small class="text-light date"><i class="mdi mdi-calendar-check"></i>@item.Updated.ToPersianDateStrFarsi()</small>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                }
+
+            }
+
+        </div><!--end row-->
+    </div><!--end container-->
+    <div class="col-12 mt-4 pt-2">
+        <a href="/Blog/BlogPage" class="btn btn-primary">نمایش بیشتر <i class="mdi mdi-chevron-right"></i></a>
+    </div>
+</section><!--end section-->

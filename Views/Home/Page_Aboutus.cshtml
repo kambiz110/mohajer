@@ -1,0 +1,178 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Mohajer.Useful.Static
+@{
+    ViewData["Title"] = "Page_Aboutus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headerNavigation {
+    @{await Html.RenderPartialAsync("_NavigationHeader");}
+}
+@section footer {
+    @{await Html.RenderPartialAsync("_Footer");}
+}
+
+<section class="bg-half bg-light">
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 text-center">
+                        <div class="page-next-level">
+                            <h4 class="title"> درباره ما  </h4>
+                            <ul class="page-next d-inline-block bg-white shadow p-2 pl-4 pr-4 rounded mb-0">
+                                <li><a asp-action="Index" asp-controller="Home" class="text-uppercase font-weight-bold text-dark">خانه</a></li>
+
+                                <li>
+                                    <span class="text-uppercase text-primary font-weight-bold">درباره ما </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>  <!--end col-->
+                </div><!--end row-->
+            </div> <!--end container-->
+        </div>
+    </div>
+</section><!--end section-->
+
+
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-lg-5 col-md-5 mt-4 pt-2 mt-sm-0 pt-sm-0">
+            <div class="position-relative">
+                <img src="~/Images/Publice/aboutmy.jpg" class="rounded img-fluid mx-auto d-block" alt="">
+
+                @*<div class="play-icon">
+                    <a href="#">
+                        <i class="mdi mdi-play text-primary rounded-pill bg-white shadow"></i>
+                    </a>
+                </div>*@
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-7 col-md-7 mt-4 pt-2 mt-sm-0 pt-sm-0">
+            <div class="section-title ml-lg-4">
+                <h4 class="title mb-4"></h4>
+                <p class="text-muted">
+                    <span class="text-primary font-weight-bold"> @Aboute_page.GroupName </span>
+                    @Aboute_page.HowCreateGroup
+                 </p>
+
+            </div>
+        </div><!--end col-->
+    </div><!--end row-->
+</div>
+@await Component.InvokeAsync("Team")
+<div class="container mt-100 mt-60 mb-60">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="section-title mb-4 pb-2">
+                <h4 class="title mb-4">ویژگی ها</h4>
+
+            </div>
+        </div><!--end col-->
+    </div><!--end row-->
+
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-responsive text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">کاملا بومی</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-internet-explorer text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">قابلیت اجرا در تمامی مراسمات، سازمانها و ارگانها</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-cryengine text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">چشم نواز</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-bootstrap text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">مذهبی و ملی</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-cube-outline text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">بر پایه عناصر زیبایی شناختی</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-sass text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">دارای روحیه ملی-مذهبی</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-check-decagram text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">مستقل از ارگان خاص </h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-vector-bezier text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0"> مدیریت قوی</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="key-feature d-flex p-3 rounded shadow bg-white">
+                <div class="icon text-center rounded-pill mr-3">
+                    <i class="mdi mdi-settings-outline text-primary"></i>
+                </div>
+                <div class="content mt-2">
+                    <h4 class="title mb-0">کار گروهی هماهنگ</h4>
+                </div>
+            </div>
+        </div><!--end col-->
+    </div><!--end row-->
+
+
+</div>

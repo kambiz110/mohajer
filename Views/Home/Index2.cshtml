@@ -1,0 +1,158 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@addTagHelper *, DNTCaptcha.Core
+
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section headerNavigation {
+    @{await Html.RenderPartialAsync("_NavigationHeaderHome");}
+}
+
+
+@await Component.InvokeAsync("Team")
+@*@await Component.InvokeAsync("Slider")*@
+
+@await Component.InvokeAsync("MeinContent")
+
+@await Component.InvokeAsync("Nazarats")
+
+@await Html.PartialAsync("_PartialConnectMy")
+
+
+@section footer {
+    @{await Html.RenderPartialAsync("_Footer");}
+}
+
+
+@section Styles{
+    <link href="~/SweetAlert/sweetalert2.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/css/headerLogo.css" rel="stylesheet" />*@
+    <link href="~/carousel-lazy-loading-square/square1.css" rel="stylesheet" />
+    <link href="~/carousel-lazy-loading-square/carousel-lazy-loading-square.css" rel="stylesheet" />
+
+    <link href="~/css/headerLogo.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/line.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/tobii.min.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/tiny-slider.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/style.min.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/colors/default.css" rel="stylesheet" />
+    <style>
+        .shop-features .category-title {
+            position: absolute;
+            top: 90%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            right: 20px;
+            z-index: 1;
+        }
+    </style>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/SweetAlert/sweetalert2.js"></script>
+    <script src="~/SweetAlert/polyfill.js.js"></script>
+
+    <script src="~/lib/carousel-lazy-loading-square/square1.js"></script>
+
+    <script src="~/Landrick/layouts/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Landrick/layouts/js/tobii.min.js"></script>
+
+    <script src="~/Landrick/layouts/js/tiny-slider.js"></script>
+
+    <script src="~/Landrick/layouts/js/feather.min.js"></script>
+    <script src="~/Landrick/layouts/js/switcher.js"></script>
+    <script src="~/Landrick/layouts/js/plugins.init.js"></script>
+    <script src="~/Landrick/layouts/js/app.js"></script>
+    <script>
+        $('.slidernooreshohada').square1({
+            caption: 'none',
+            theme: 'light'
+        });
+        // $('.slidernooreshohada').square1({ animation: 'slide' });
+    </script>
+    <script>
+        $("#FormSendNazar").submit(function (e) {
+            e.preventDefault();
+
+            if ($("#FormSendNazar input:checkbox:checked").length > 0) {
+                if ($('#FormSendNazar').valid()) {
+
+                    var form = $(this);
+                    Swal.fire({
+                        title: ` <span class="w3-round-medium w3-padding w3-lime font_IRANSans">آیا از متن وارد شده اطمینان دارید ؟</span>`,
+                        text: '',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'تایید',
+                        cancelButtonText: 'انصراف'
+                    }).then((result) => {
+                        if (result.value) {
+
+                            var url = '/Admin/Nazarat/AddNazar';
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                data: form.serialize(), // serializes the form's elements.
+                                success: function (data) {
+                                    if (data.isSuccess) {
+                                        $(".dntCaptcha").load(window.location.href + " .dntCaptcha");
+                                        Swal.fire(
+                                            ' موفق',
+                                            data.message,
+                                            'success'
+                                        )
+
+                                    }
+                                    else {
+                                        $(".dntCaptcha").load(window.location.href + " .dntCaptcha");
+                                        Swal.fire(
+                                            'نا موفق ',
+                                            data.message,
+                                            'error'
+                                        )
+                                    }
+
+                                }
+                            });
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            Swal.fire(
+                                ' ارسال نظر توسط شما لغو گردید ',
+                                '',
+                                'error'
+                            )
+                        }
+                    })
+                }
+                else {
+                    Swal.fire(
+                        'نا موفق ',
+                        "لطفا فرم را به درستی تکمیل نمائید",
+                        'error'
+                    )
+                }
+
+            }
+            else {
+                Swal.fire(
+                    'نا موفق ',
+                    "تیک تایید ضوابط اخلاقی را نزده اید",
+                    'error'
+                )
+            }
+
+            //w3.show('#id01');
+        });
+
+        $('.example-1').square1({
+            caption: 'none',
+            theme: 'light'
+        });
+    </script>
+}
+
+
+

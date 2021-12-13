@@ -1,0 +1,190 @@
+﻿
+@model Mohajer.ViewModel.ProductViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using Mohajer.Useful.Static
+
+@{
+    ViewData["Title"] = "DetailsProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="font_W_titr w3-btn w3-round w3-animate-bottom w3-khaki"> ویرایش محتوا</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-10 col-sm-12">
+        <form asp-action="DetailsProduct" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" value="@Model.Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <input type="hidden" value="@ViewBag.Id" name="Id" />
+
+            <div class="card card-outline card-info">
+                <div class="card-header">
+
+                    <!-- tools box -->
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool btn-sm" data-widget="remove" data-toggle="tooltip"
+                                title="Remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body pad">
+                    <div class="mb-3">
+                        <textarea class="summernote" asp-for="Description" rows="7" placeholder="لطفا متن خود را وارد کنید"
+                                  style="text-align:right;direction:rtl;width: 100%; height: 400px;font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <img src="@Model.ImageResized" class="w3-round" style="width: 200px;height: 200px;">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <fieldset class="w3-pale-red">
+                <legend>@StaticCreateProduct.UploadFile</legend>
+                <div class="form-group">
+                    <label asp-for="Media" class="control-label"></label><br />
+                    <label class="control-label"> @StaticCreateProduct.FormatVideoSound</label>
+                    <input asp-for="Media" type="file" accept=".mp4, .mp3, .mpg, .mpeg , .avi ,.aac, .wav" class="form-control">
+
+                </div>
+
+            </fieldset>
+            <fieldset class="w3-amber">
+                <legend>@StaticCreateProduct.LinkForOutServer</legend>
+
+                <div class="form-group">
+                    <label asp-for="Link" class="control-label"></label><br />
+
+                    <input asp-for="Link" type="text" value="@Model.Link" class="form-control">
+
+                </div>
+            </fieldset>
+            <br />
+            <div class="form-group">
+                <label asp-for="CountentType" class="control-label"></label>
+                <select asp-for="CountentType" class="form-control">
+                    <option value="0">انتخاب نمائید </option>
+                    @foreach (var std2 in @ViewData["FileType"] as List<KeyValuePair<string, string>>)
+                    {
+                        if (std2.Value == Model.CountentType)
+                        {
+                            <option value="@std2.Value" selected="selected">@std2.Key</option>
+                        }
+                        else
+                        {
+                            <option value="@std2.Value">@std2.Key</option>
+                        }
+
+
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label"> @StaticCreateProduct.Category</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.ParentCategoryId" required>
+                    <option> @StaticCreateProduct.FileTypeSelected</option>
+
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group text-right" style="direction:rtl;text-align:right">
+                <label asp-for="Tages" class="control-label"></label>
+                <div class="form-group">
+                    <input asp-for="Tages" type="text" class="form-control text-right" style="direction:rtl;text-align:right" value="@Model.Tages" />
+                </div>
+                <span asp-validation-for="Tages" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="SliderShow"> @StaticCreateProduct.PlaceShow</label>
+                @if (Model.SliderShow)
+                {
+                    <input type="checkbox" asp-for="SliderShow" class="form-check-input mr-3 w3-check" checked>
+                }
+                else
+                {
+                    <input type="checkbox" asp-for="SliderShow" class="form-check-input mr-3 w3-check">
+                }
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ثبت" class="btn btn-primary p-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">بازگشت</a>
+</div>
+@section Styles{
+    <link href="~/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" rel="stylesheet" />
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <link href="~/Tagging-System-Autocomplete-Amsify-Suggestags/css/amsify.suggestags.css" rel="stylesheet" />
+    <link href="~/wysiwyg-editor-summernote/dist/summernote.css" rel="stylesheet" />
+    <link href="~/wysiwyg-editor-summernote/dist/summernote-bs4.css" rel="stylesheet" />
+    
+}
+@section Scripts{
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
+    <script src="~/Tagging-System-Autocomplete-Amsify-Suggestags/js/jquery.amsify.suggestags.js"></script>
+    <script src="~/wysiwyg-editor-summernote/dist/summernote.js"></script>
+    <script src="~/wysiwyg-editor-summernote/dist/summernote-bs4.js"></script>
+    <script src="~/wysiwyg-editor-summernote/dist/lang/summernote-fr-FR.js"></script>
+    <script>
+        $(function () {
+            //Simple Extensible WYSIWYG Editor For Web - summernote
+            $('.summernote').summernote({
+                airMode: false,
+                lang: 'fr-FR',
+                disableGrammar: false,
+                spellCheck: false,
+                tooltip: 'auto',
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana'],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview', 'help']],
+                ],
+            });
+            // bootstrap WYSIHTML5 - text editor
+
+            $('.textarea').wysihtml5({
+                toolbar: { fa: true }
+            })
+            // Suggestions - Tages
+            $('input[name="Tages"]').amsifySuggestags({
+                type: 'amsify',
+                classes: ['w3-indigo', 'w3-green', 'w3-lime', 'w3-khaki', 'w3-gray'],
+            });
+        });
+    </script>
+}
+

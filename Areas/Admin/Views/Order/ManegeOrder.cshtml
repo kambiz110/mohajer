@@ -1,0 +1,183 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.Service.Order.Dto
+@model LstOrderPagerDto
+@using Mohajer.Useful.Static
+@{
+    ViewData["Title"] = "ManegeOrder";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/SweetAlert/sweetalert2.css" rel="stylesheet" type="text/css" />
+}
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title font_W_koodak">@StaticOrder.ListName</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive-sm">
+                    <table id="TableProduct" class="table">
+                        <thead class="thead-dark">
+                            <tr class="center-block" style="text-align:center;" align="center">
+                                <th class="w-10 center-block">@Html.DisplayNameFor(model => Model.LSTOrderDtos[0].Full_Name)</th>
+                                <th class="w-15 center-block">@Html.DisplayNameFor(model => Model.LSTOrderDtos[0].Subject) </th>
+                                <th class="w-45 center-block">@Html.DisplayNameFor(model => Model.LSTOrderDtos[0].Phone)</th>
+                                <th class="w-30 center-block">عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.LSTOrderDtos != null && Model.LSTOrderDtos.Count() > 0)
+                            {
+                                foreach (var item in Model.LSTOrderDtos)
+                                {
+                                    <tr style="text-align: center; vertical-align: middle;" class="">
+
+                                        <td class="">@item.Full_Name</td>
+                                        <td class="">@Html.Raw(item.Subject)</td>
+                                        <td class="">@Html.Raw(item.Phone)</td>
+
+
+                                        <td class="">
+                                            <a asp-area="Admin" asp-controller="Order" asp-action="DeletOrder" asp-route-id="@item.Id"><span class="w3-btn w3-round w3-pink">حذف کردن</span></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td> <span class="text-danger font_IRANSans">موردی یافت نگردید</span></td>
+                                </tr>
+                            }
+
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+@if (Model.PagerDto != null)
+{
+    <paging page-no="@Model.PagerDto.PageNo"
+            page-size="@Model.PagerDto.PageSize"
+            total-records="@Model.PagerDto.TotalRecords"
+            show-prev-next="true"
+            show-total-pages="true"
+            show-total-records="true"
+            show-page-size-nav="true"
+            show-first-numbered-page="true"
+            show-last-numbered-page="true"
+            query-string-key-page-no="PageNo"
+            query-string-key-page-size="PageSize"
+            text-total-pages="صفحه"
+            text-total-records="رکورد"
+            text-first="&laquo;"
+            text-last="&raquo;"
+            text-previous="&lsaquo;"
+            text-next="&rsaquo;"
+            sr-text-first="اولین"
+            sr-text-last="آخرین"
+            sr-text-previous="قبلی"
+            sr-text-next="بعدی"
+            gap-size="2">
+    </paging>
+}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/SweetAlert/sweetalert2.js"></script>
+    <script src="~/SweetAlert/polyfill.js.js"></script>
+    <!-- DataTables -->
+
+
+
+
+
+    <script>
+        function submitDelet(id, e) {
+
+            e.preventDefault();
+
+            var form = $(this);
+            Swal.fire({
+                title: ` <span class="w3-round-medium w3-padding w3-lime font_IRANSans">آیا از انتخاب خود اطمینان دارید ؟</span>`,
+                text: '',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'تایید',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.value) {
+
+                    var url = '/Admin/Order/DeletOrder';
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: id, // serializes the form's elements.
+                        success: function (data) {
+                            if (data.isSuccess) {
+
+                                Swal.fire(
+                                    ' موفق',
+                                    data.message,
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                            else {
+
+                                Swal.fire(
+                                    'نا موفق ',
+                                    data.message,
+                                    'error'
+                                )
+                            }
+
+                        }
+                    });
+
+
+
+
+
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        ' ارسال نظر توسط شما لغو گردید ',
+                        '',
+                        'error'
+                    )
+                }
+            })
+            //w3.show('#id01');
+
+        }
+
+
+
+    </script>
+}
+
+
+

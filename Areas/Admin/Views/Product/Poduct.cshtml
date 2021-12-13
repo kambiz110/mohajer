@@ -1,0 +1,128 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.Useful.Static
+@using Mohajer.ViewModel
+@model ProductList_Pager_ViewModel
+@{
+    ViewData["Title"] = "Poduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+}
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h2>
+                    <a asp-action="CreatePoduct"><span class="w3-btn w3-round w3-animate-bottom w3-khaki w3-margin-right font_W_koodak">@StaticTable.InsertProduct  </span></a>
+                </h2>
+                <div class="card-header">
+                    <h3 class="card-title font_W_koodak">@StaticTable.tableProdoctname</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive-sm">
+                    <table id="TableProduct" class="table">
+                        <thead class="thead-dark">
+                            <tr class="center-block" style="text-align:center;" align="center">
+                                <th class="w-25 center-block">@Html.DisplayNameFor(model => Model.productList[0].Image)
+                                <th class="w-15 center-block">@Html.DisplayNameFor(model => Model.productList[0].Title)</th>
+                                <th class="w-35 center-block">@Html.DisplayNameFor(model => Model.productList[0].CountentType)</th>
+                                <th class="w-25 center-block">@StaticTable.operations</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model.productList != null)
+                                {
+                                    foreach (var item in Model.productList)
+                                    {
+                                        <tr style="text-align: center; vertical-align: middle;" class="">
+                                            <td class="">
+                                                <img src="@item.ImageResized" class="w3-circle" style="width: 200px;height: 200px;display: inline-block;
+">
+                                            </td>
+                                            <td class="">@item.Title</td>
+                                            <td class="">@item.CountentType.ToContentType()</td>
+
+                                            <td class="">
+                                                @if (item.IsActive)
+                                                {
+                                                    <a asp-action="ChangeStatusProduct" asp-route-Id="@item.Id">    <span class="w3-btn w3-round w3-red">لغو انتشار</span></a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="ChangeStatusProduct" asp-route-Id="@item.Id">     <span class="w3-btn w3-round w3-green"> تایید کردن</span></a>
+                                                }
+                                                |
+                                                <a asp-action="DetailsProduct" asp-route-Id="@item.Id"> <span class="w3-btn w3-round w3-lime">ویرایش</span></a>
+                                                |
+                                                <a asp-action="DelateProduct" asp-route-Id="@item.Id"><span class="w3-btn w3-round w3-cyan">حذف</span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            }
+
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+@{
+    if (Model.pager != null)
+    {
+        <paging page-no="@Model.pager.PageNo"
+                page-size="@Model.pager.PageSize"
+                total-records="@Model.pager.TotalRecords"
+                show-prev-next="true"
+                show-total-pages="true"
+                show-total-records="true"
+                show-page-size-nav="true"
+                show-first-numbered-page="true"
+                show-last-numbered-page="true"
+                query-string-key-page-no="PageNo"
+                query-string-key-page-size="PageSize"
+                text-total-pages="صفحه"
+                text-total-records="رکورد"
+                text-first="&laquo;"
+                text-last="&raquo;"
+                text-previous="&lsaquo;"
+                text-next="&rsaquo;"
+                sr-text-first="اولین"
+                sr-text-last="آخرین"
+                sr-text-previous="قبلی"
+                sr-text-next="بعدی"
+                gap-size="2">
+        </paging>
+    }
+}
+
+@section Scripts {
+
+    <!-- DataTables -->
+
+
+    <script src="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.js"></script>
+ 
+}
+
+

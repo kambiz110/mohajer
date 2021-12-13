@@ -1,0 +1,102 @@
+﻿@model Mohajer.ViewModel.ProductViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using Mohajer.Useful.Static
+@{
+    ViewData["Title"] = "CreatePoduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>افزودن محتوا</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-10 col-sm-12">
+        <form asp-action="CreatePoduct" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+       
+
+            <div class="card card-outline card-info">
+                <div class="card-header">
+
+                    <!-- tools box -->
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool btn-sm"  data-widget="remove" data-toggle="tooltip"
+                                title="Remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body pad">
+                    <div class="mb-3">
+                        <textarea class="textarea" asp-for="Description" placeholder="لطفا متن خود را وارد کنید"
+                                  style="text-align:right;direction:rtl;width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Media" class="control-label"></label><br />
+                <label class="control-label"> @StaticCreateProduct.FormatVideoSound</label>
+                <input asp-for="Media" type="file" accept=".mp4, .mp3, .mpg, .mpeg , .avi ,.aac, .wav" class="form-control">
+
+            </div>
+            <div class="form-group">
+                <label asp-for="CountentType" class="control-label"></label>
+                <select asp-for="CountentType" asp-items="@((List<SelectListItem>)ViewData["FileType"])" class="form-control">
+                    <option value="">انتخاب نمائید </option>
+                </select>
+             
+            </div>
+            <div class="form-group">
+                <label for="SliderShow"> @StaticCreateProduct.PlaceShow</label><input type="checkbox" asp-for="SliderShow" class="form-check-input mr-3 w3-check">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ثبت" class="btn btn-primary p-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">بازگشت</a>
+</div>
+@section Styles{
+    <link href="~/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" rel="stylesheet" />
+}
+@section Scripts{
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
+    <script>
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+ 
+            // bootstrap WYSIHTML5 - text editor
+
+            $('.textarea').wysihtml5({
+                toolbar: { fa: true }
+            })
+        })
+    </script>
+}

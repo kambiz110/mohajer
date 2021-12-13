@@ -1,0 +1,210 @@
+﻿@model Mohajer.ViewModel.RegisterUserViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>گروه تواشی هدا</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
+    <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose" />
+    <meta content="Shreethemes" name="author" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/Landrick/layouts/images/favicon.ico">
+    <!-- Bootstrap -->
+    <link href="~/Landrick/layouts/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="~/Landrick/layouts/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Main css -->
+    <link href="~/Landrick/layouts/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Landrick/layouts/css/style-rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader -->
+
+    <div class="back-to-home rounded d-none d-sm-block">
+        <a href="~/Home/index" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
+    </div>
+
+    <!-- Hero Start -->
+    <section class="bg-home w3-margin-top w3-margin-bottom">
+        <div class="home-center">
+            <div class="home-desc-center">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 col-md-6">
+                            <div class="mr-lg-5">
+                                <img src="~/Landrick/layouts/images/user/signup2.jpg" class="img-fluid d-block mx-auto" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <div class="login_page bg-white shadow rounded p-4">
+                                <div class="text-center">
+                                    <h4 class="mb-4">ثبت نام</h4>
+                                </div>
+
+                                <form asp-action="EditeUser" enctype="multipart/form-data" method="post">
+                                <input type="hidden" asp-for="@Model.Id" />
+                                <div class="row">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <label asp-for="First_Name" class="control-label"></label>
+                                            <i class="mdi mdi-account ml-3 icons"></i>
+                                            <input type="text" class="form-control pl-5" asp-for="First_Name" value="@Model.First_Name">
+                                            <span asp-validation-for="First_Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group position-relative">
+                                            <label asp-for="Last_Name" class="control-label"></label>
+                                            <i class="mdi mdi-account ml-3 icons"></i>
+                                            <input type="text" class="form-control pl-5" asp-for="Last_Name" value="@Model.Last_Name" required>
+                                            <span asp-validation-for="Last_Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group position-relative">
+                                            <label asp-for="Email" class="control-label"></label>
+                                            <i class="mdi mdi-account ml-3 icons"></i>
+                                            <input type="email" class="form-control pl-5" asp-for="Email" value="@Model.Email" required>
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group position-relative">
+
+                                            <label asp-for="Phone" class="control-label"></label>
+                                            <i class="mdi mdi-account ml-3 icons"></i>
+                                            <span class="w3-button w3-round-medium">مثال : 09101234567</span>
+                                            <input type="number" class="form-control pl-5" asp-for="Phone" value="@Model.Phone">
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group position-relative">
+                                            <label asp-for="Password" class="control-label"></label>
+                                            <i class="mdi mdi-key ml-3 icons"></i>
+                                            <input type="password" asp-for="Password" class="form-control pl-5" value="@Model.Password">
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group position-relative">
+                                            <label asp-for="RePassword" class="control-label"></label>
+                                            <i class="mdi mdi-key ml-3 icons"></i>
+                                            <input type="password" class="form-control pl-5" asp-for="RePassword" value="@Model.Password">
+                                            <span asp-validation-for="RePassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Role" class="control-label"></label>
+                                            <select asp-for="Role" class="form-control">
+                                                <option value="">انتخاب نمائید </option>
+                                                @foreach (var std2 in ViewData["Role"] as List<KeyValuePair<string, string>>)
+                                                {
+                                                    if (std2.Value == Model.Role)
+                                                    {
+                                                        <option value="@std2.Value" selected="selected">@std2.Key</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@std2.Value">@std2.Key</option>
+                                                    }
+
+
+                                                }
+                                                @*@foreach (var std2 in ViewData["Role"] as List<KeyValuePair<string, string>>)
+                                                {
+                                                    if (std2.Key == Model.Role)
+                                                    {
+                                                        <option value="@std2.Key" selected="selected">@std2.Value</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@std2.Key">@std2.Value</option>
+                                                    }
+
+
+                                                }*@
+                                            </select>
+                                            <span asp-validation-for="Role" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <img src="@Model.Image" class="w3-round" style="width: 200px;height: 200px;">
+                                    </div>
+                                    <fieldset class="col-11">
+                                        <legend class="w3-small">در صورت تمایل به تعویض عکس می توانید از این بخش استفاده نمایئد</legend>
+                                        <div class="col-md-12">
+                                            <div class="form-group position-relative">
+                                                <label asp-for="Image" class="control-label"></label>
+                                                <input asp-for="Image" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" asp-for="IsWorkUser">
+                                                <label class="custom-control-label" asp-for="IsWorkUser"> <a href="#" class="text-success">جزو گروه کاری در صفحه اصلی نمایش داده شود؟</a></label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+                                                <label class="custom-control-label" for="customCheck1"> <a href="#" class="text-primary">شرایط و ضوابط را من تایید میکنم</a></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+
+                                        <input type="submit" value="بروزرسانی " class="btn btn-primary" />
+                                    </div>
+                                    <div class="mx-auto">
+                                        <p class="mb-0 mt-3"><small class="text-dark mr-2">قبلاً حساب دارید؟</small> <a href="~/Landrick/layouts/page-login.html" class="text-dark font-weight-bold">وارد شوید</a></p>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div> <!--end col-->
+                    </div><!--end row-->
+                </div> <!--end container-->
+            </div>
+        </div>
+    </section><!--end section-->
+    <!-- Hero End -->
+    <!-- javascript -->
+    <script src="~/Landrick/layouts/js/jquery.min.js"></script>
+    <script src="~/Landrick/layouts/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Landrick/layouts/js/jquery.easing.min.js"></script>
+    <script src="~/Landrick/layouts/js/scrollspy.min.js"></script>
+    <!-- Main Js -->
+    <script src="~/Landrick/layouts/js/app.js"></script>
+</body>
+
+</html>

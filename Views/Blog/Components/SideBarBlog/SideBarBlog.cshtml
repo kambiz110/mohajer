@@ -1,0 +1,57 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using Mohajer.Service.Category.Dto
+@using Mohajer.Useful.Static
+@model SideBareDto
+
+@if (Model.sideBarCategories != null)
+{
+    <!-- CATAGORIES -->
+    <div class="widget mb-4 pb-2">
+        <h4 class="widget-title">دسته بندی ها</h4>
+        <ul class="list-unstyled mt-4 mb-0 blog-catagories">
+            @foreach (var item in Model.sideBarCategories)
+            {
+                <li><a asp-area="" asp-controller="Blog" asp-action="BlogCategory" asp-route-categoryId="@item.Id">@item.CategoryName</a> <span class="float-right">@item.count</span></li>
+            }
+        </ul>
+    </div>
+    <!-- CATAGORIES -->
+}
+@if (Model.TagesSlidBare != null && Model.TagesSlidBare.Count() > 0)
+{
+    <!-- TAG CLOUDS -->
+    <div class="widget mb-4 pb-2">
+        <h4 class="widget-title">برچسب های ابری</h4>
+        <div class="tagcloud mt-4">
+            @foreach (var item in Model.TagesSlidBare)
+            {
+                <a asp-area="" asp-controller="Blog" asp-action="BlogQueryTag" asp-route-tag="@item" class="rounded">@item</a>
+            }
+
+
+        </div>
+    </div>
+    <!-- TAG CLOUDS -->
+}
+
+
+@if (Model.products != null && Model.products.Count() > 0)
+{
+    <!-- RECENT POST -->
+    <div class="widget mb-4 pb-2">
+        <h4 class="widget-title">پست های اخیر</h4>
+        <div class="mt-4">
+            @foreach (var item in Model.products)
+            {
+                <div class="clearfix post-recent">
+                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="@item.ImageResized" class="img-fluid rounded"></a></div>
+                    <div class="post-recent-content float-left"><a asp-area="" asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.Id">@item.Title</a><span class="text-muted mt-2">@item.Updated.ToPersianDateStrFarsi() </span></div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- RECENT POST -->
+}
+
+

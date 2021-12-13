@@ -1,0 +1,50 @@
+﻿@model Mohajer.ViewModel.CategoryViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+}
+<h2>
+    <a asp-action="#"><span class="w3-btn w3-round w3-animate-bottom w3-khaki font_W_koodak">ویرایش دسته بندی</span></a>
+</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label class="control-label">عنوان</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">والد دسته بندی</label>
+                <select asp-for="ParentCategoryId" class="form-control" asp-items="ViewBag.ParentCategoryId">
+                    <option >انتخاب والد...</option>
+                </select>
+                <span asp-validation-for="ParentCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="w3-btn w3-round w3-animate-bottom w3-blue-gray">بازگشت به لیست دسته بندی ها</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

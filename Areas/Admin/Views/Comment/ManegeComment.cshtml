@@ -1,0 +1,226 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.Service.Comment.Dto
+@model ListCommentPagerDto
+@using Mohajer.Useful.Static
+@{
+    ViewData["Title"] = "ManegeComment";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/SweetAlert/sweetalert2.css" rel="stylesheet" type="text/css" />
+}
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title font_W_koodak">@StaticComment.ManegedCommentLst</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive-sm">
+                    <table id="TableProduct" class="table">
+                        <thead class="thead-dark">
+                            <tr class="center-block" style="text-align:center;" align="center">
+                                <th class="w-10 center-block">@Html.DisplayNameFor(model => Model.LSTcommentDtos[0].Name)</th>
+                                <th class="w-15 center-block">@Html.DisplayNameFor(model => Model.LSTcommentDtos[0].CommentMsg) </th>
+                                <th class="w-45 center-block">@Html.DisplayNameFor(model => Model.LSTcommentDtos[0].ProductTitle)</th>
+                                <th class="w-30 center-block">عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.LSTcommentDtos != null && Model.LSTcommentDtos.Count() > 0)
+                            {
+                                foreach (var item in Model.LSTcommentDtos)
+                                {
+                                    <tr style="text-align: center; vertical-align: middle;" class="">
+
+                                        <td class="">@item.Name</td>
+                                        <td class="">@Html.Raw(item.CommentMsg)</td>
+                                        <td class="">@Html.Raw(item.ProductTitle)</td>
+
+
+                                        <td class="">
+                                            <a asp-action="ChangeStatusComment" asp-route-Id="@item.Id"><span class="w3-btn w3-round w3-green">تأیید کردن</span></a>
+                                            |
+                                            <a asp-action="DeleteComment" asp-route-Id="@item.Id"><span class="w3-btn w3-round w3-pink">حذف کردن</span></a>
+                                            |
+                                            <a asp-area="" asp-action="BlogDetail" asp-controller="Blog" asp-route-Id="@item.ProductId"><span class="w3-btn w3-round w3-blue"> مشاهده</span></a>
+                                            |
+                                            <a onclick="@(Html.Raw(String.Format("answercomment({0})",item.Id)))">
+                                                <span class="w3-btn w3-round w3-pale-green"> پاسخ</span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td> <span class="text-danger font_IRANSans">موردی یافت نگردید</span></td>
+                                </tr>
+                            }
+
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<div id="id01" class="w3-modal font_IRANSans">
+    <div class="w3-modal-content w3-card-3">
+        <header class="w3-container w3-green">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                  class="w3-button w3-large w3-display-topright">&times;</span>
+            <h2 class="mr-lg-5"> پاسخ</h2>
+        </header>
+        <div class="w3-container">
+            <p></p>
+            <form id="AnswerCommentForm" class="w3-container" action="/AnswerComment" method="post">
+                <div class="w3-section">
+                    <input type="hidden" id="comment_ID" name="Id"  />
+                    <div class="col-md-12">
+                        <div class="form-group position-relative">
+                            <label>پاسخ  :</label>
+                            <i class="mdi mdi-comment-text-outline ml-3 icons"></i>
+                            <textarea name="Comment" id="Comment" rows="4" class="form-control pl-5" placeholder="پاسخ خود را شرح دهید :" required></textarea>
+                        </div>
+                    </div><!--end col-->
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">پاسخ</button>
+
+                </div>
+            </form>
+
+        </div>
+        <footer class="w3-container w3-light-green">
+            <p>در ارسال پاسخ دقت بفرمائید </p>
+        </footer>
+    </div>
+</div>
+@if (Model.PagerDto != null)
+{
+    <paging page-no="@Model.PagerDto.PageNo"
+            page-size="@Model.PagerDto.PageSize"
+            total-records="@Model.PagerDto.TotalRecords"
+            show-prev-next="true"
+            show-total-pages="true"
+            show-total-records="true"
+            show-page-size-nav="true"
+            show-first-numbered-page="true"
+            show-last-numbered-page="true"
+            query-string-key-page-no="PageNo"
+            query-string-key-page-size="PageSize"
+            text-total-pages="صفحه"
+            text-total-records="رکورد"
+            text-first="&laquo;"
+            text-last="&raquo;"
+            text-previous="&lsaquo;"
+            text-next="&rsaquo;"
+            sr-text-first="اولین"
+            sr-text-last="آخرین"
+            sr-text-previous="قبلی"
+            sr-text-next="بعدی"
+            gap-size="2">
+    </paging>
+}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+<script src="~/SweetAlert/sweetalert2.js"></script>
+<script src="~/SweetAlert/polyfill.js.js"></script>
+@section Scripts {
+
+    <!-- DataTables -->
+
+
+
+
+    <script>
+        function ShowModal() {
+
+            document.getElementById('id01').style.display = 'block';
+        }
+        function answercomment(id) {
+
+            document.getElementById('comment_ID').value = id;
+            document.getElementById('id01').style.display = 'block';
+        }
+
+    </script>
+    <script>
+        $("#AnswerCommentForm").submit(function (e) {
+            e.preventDefault();
+            document.getElementById('id01').style.display = 'none';
+            var form = $(this);
+            Swal.fire({
+                title: ` <span class="w3-round-medium w3-padding w3-lime font_IRANSans">آیا از پاسخ وارد شده اطمینان دارید ؟</span>`,
+                text: '',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'تایید',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.value) {
+
+                    var url = '/Admin/Comment/AnswerComment';
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form.serialize(), // serializes the form's elements.
+                        success: function (data) {
+                            if (data.isSuccess) {
+                               
+                                Swal.fire(
+                                    ' موفق',
+                                    data.message,
+                                    'success'
+                                )
+                               location.reload();
+                            }
+                            else {
+                              
+                                Swal.fire(
+                                    'نا موفق ',
+                                    data.message,
+                                    'error'
+                                )
+                            }
+
+                        }
+                    });
+
+
+
+
+
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        ' ارسال نظر توسط شما لغو گردید ',
+                        '',
+                        'error'
+                    )
+                }
+            })
+            //w3.show('#id01');
+        });
+
+
+    </script>
+}
+

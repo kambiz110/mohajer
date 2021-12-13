@@ -1,0 +1,148 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.ViewModel
+@using Mohajer.Useful.Static
+@model IEnumerable<UserHomePageViewModel>
+@{
+}
+
+@*<div class="container"  style="margin-top:150px;">*@
+    @*<div class="row">*@
+        @*<div class="col-12 text-center">
+            <div class="section-title mb-4 pb-2">
+                <h4 class="title mb-4"> گروه کاری ما </h4>
+                <p class="text-muted para-desc mx-auto mb-0"> گروه تواشیح و همسرایی نورالشهدا در شهر جدید پردیس تهران به صورت مستقل  با تکیه به قدرت خالق و همراهی یکدیگر در خدمت شما همراهان هستند.</p>
+            </div>
+        </div>*@
+    @*</div>*@
+
+    <!--<div class="row">
+        if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <div class="team text-center">
+                        <div class="position-relative">
+
+                            <img src="item.Image" class="img-fluid avatar avatar-ex-large rounded-pill" alt="">
+                            <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-facebook" title="فیس بوک"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-instagram" title="اینستاگرام"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-twitter" title="توییتر"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-google-plus" title="گوگل"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="content pt-3 pb-3">
+                            <h5 class="mb-0"><a href="javascript:void(0)" class="name text-dark">item.First_Name &nbsp; item.Last_Name</a></h5>
+                            <small class="designation text-muted">item.Role.ToFarsiRole()</small>
+                        </div>
+                    </div>
+                </div>-->
+    <!--end col-->
+    <!--}
+        }
+
+
+
+    </div>-->
+@*</div>*@<!--end container-->
+
+<div class="container" style="margin-top:250px;">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/00.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2"> گروه تواشیح و همسرایی نورالشهدا</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/06.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  وحید مهاجر</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/07.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">   مجتبی قاسمی </span></h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/01.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2"> بهزاد وثوق</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/02.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  حسین عبدال</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/03.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  محمد پلویی</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/04.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  محمد جواد موسوی</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/05.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  سعید دهقانی</span></h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/08.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  محمد هادی عطاران</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/09.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  امیر اشلافی</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shop-features work-container position-relative d-block overflow-hidden rounded mt-3">
+                <img src="~/Uploud/Profile/10.jpg" class="img-fluid rounded" alt="work-image">
+                <div class="category-title">
+                    <h4><span style="background-color:dimgray;border-radius:5px;color:white" class="p-2">  جواد کردبچه</span></h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

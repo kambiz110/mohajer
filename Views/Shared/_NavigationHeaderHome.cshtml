@@ -1,0 +1,116 @@
+﻿@using Mohajer.Useful.Static
+@using Mohajer.Entity
+@{
+}
+<section>
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader -->
+    <!-- Navbar STart -->
+
+
+</section>
+<header id="topnav" class="defaultscroll sticky bg-white">
+
+    <div class="">
+        <div class="toplogo" style="padding-left:0;padding-right:0;">
+            <img src="~/Images/Publice/noorshohadaheadlogo.png" class="img-responsive w3-col l12 s12" />
+        </div>
+        <div class="w3-row">
+            <div class="w3-col l3 s6 w3-center"><p></p></div>
+            <div class="w3-col l6 s6 w3-center">
+               
+                    <div class="row" >
+                        <div class="menu-extras">
+                            <div class="menu-item">
+                                <!-- Mobile menu toggle-->
+                                <a class="navbar-toggle">
+                                    <div class="lines">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <!-- End mobile menu toggle-->
+                            </div>
+                        </div>
+
+                        <div id="navigation">
+                            <!-- Navigation Menu-->
+                            <ul class="navigation-menu">
+                                <li><a href="/Home/Index">@StaticNavigation.HomePage</a></li>
+                                <li class="has-submenu">
+                                    <a href="javascript:void(0)">@StaticNavigation.MultiMedia</a><span class="menu-arrow"></span>
+                                    <ul class="submenu megamenu">
+                                        <li>
+                                            <ul>
+                                                <li><a asp-area="" asp-controller="Blog" asp-action="BlogMediaTag" asp-route-type="0">@StaticNavigation.Pictuer</a></li>
+                                                <li><a asp-area="" asp-controller="Blog" asp-action="BlogMediaTag" asp-route-type="2">@StaticNavigation.Musice</a></li>
+                                                <li><a asp-area="" asp-controller="Blog" asp-action="BlogMediaTag" asp-route-type="1">@StaticNavigation.Video</a></li>
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="has-submenu">
+                                    <a asp-area="" asp-action="BlogPage" asp-controller="Blog">@StaticNavigation.Category</a><span class="menu-arrow"></span>
+                                    <ul class="submenu">
+                                        @await Component.InvokeAsync("NavigationCategories")
+                                    </ul>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="javascript:void(0)">راهنما</a><span class="menu-arrow"></span>
+                                    <ul class="submenu">
+                                        <li><a href="/Home/Page_Aboutus">درباره ما </a></li>
+                                        <li><a href="/Home/Page_Contacts">تماس با ما </a></li>
+
+                                    </ul>
+                                </li>
+                            </ul><!--end navigation menu-->
+
+                        </div><!--end navigation-->
+
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="buy-button mr-2" id="UserAuthName">
+                                <a href="#" class="btn btn-primary mr-2" style="font-family:Tanha">
+                                    @User.Identity.Name
+                                </a>
+                            </div>
+                            <div class="buy-button ml-3 mr-2" id="AdminPanel">
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Poduct" class="btn btn-success mr-2" style="font-family:Tanha">پنل ادمین</a>
+                            </div>
+                            <div class="buy-button" id="SignOut">
+
+                                <a asp-area="" asp-controller="Authorization" asp-action="SignOut">
+                                    <i class="mdi mdi-logout" style="font-size:36px;color:red"></i>
+                                </a>
+                            </div>
+
+
+                        }
+                        else
+                        {
+                            <div class="buy-button">
+                                <a asp-controller="Authorization" asp-action="Login" class="btn btn-success" id="LoginBtn" style="font-family:Tanha">ورود</a>
+                            </div>
+                        }
+                    </div>
+               
+            </div>
+            <div class="w3-col l3 s6 w3-center"><p></p></div>
+        </div>
+    </div><!--end container-->
+
+    
+
+</header><!--end header-->

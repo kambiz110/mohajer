@@ -1,0 +1,287 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering;
+@addTagHelper *, DNTCaptcha.Core
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Mohajer.Useful.Static
+@using Mohajer.Service.Product.Query
+@model ProductForShowBlogDeteilsDto
+@{
+    ViewData["Title"] = "BlogDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headerNavigation {
+    @{await Html.RenderPartialAsync("_NavigationHeader");}
+}
+@section footer {
+    @{await Html.RenderPartialAsync("_Footer");}
+}
+
+@section Styles{
+    <link href="~/SweetAlert/sweetalert2.css" rel="stylesheet" type="text/css" />
+}
+<section class="bg-half bg-light">
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 text-center">
+                        <div class="page-next-level">
+                            <h4 class="title">@StaticBlog.Blog</h4>
+                            <ul class="page-next d-inline-block bg-white shadow p-2 pl-4 pr-4 rounded mb-0">
+                                <li><a asp-action="Index" asp-controller="Home" class="text-uppercase font-weight-bold text-dark">@StaticBlog.Hmoe</a></li>
+                                <li><a href="#" class="text-uppercase font-weight-bold text-dark">@StaticBlog.Blog</a></li>
+                                <li>
+                                    <span class="text-uppercase text-primary font-weight-bold"> @StaticBlog.DeteilesBlog</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>  <!--end col-->
+                </div><!--end row-->
+            </div> <!--end container-->
+        </div>
+    </div>
+</section><!--end section-->
+<!-- Hero End -->
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+<!-- Blog STart -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <!-- BLog Start -->
+            <div class="col-lg-8 col-md-7">
+                <div class="mr-lg-3">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative">
+                            <img src="@Model.productViewModel.Image" class="img-fluid rounded-top" alt="" style="width:800px;height:600px;">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 text-center">
+                                    <div class="title-heading mt-4">
+
+                                        @if (Model.productViewModel.Media != null || Model.productViewModel.Link != null)
+                                        {
+                                            if (Model.productViewModel.Media != null)
+                                            {
+                                                <div class="watch-video mt-4 pt-2 animated fadeInUpBig animation-delay-5">
+                                                    <span class="w3-padding w3-green w3-text-white w3-round-large">  <a href="@Model.productViewModel.Media" class="video-play-icon watch text-white mb-2 ml-2"><i class="mdi mdi-play play-icon-circle text-center d-inline-block mr-2 rounded-pill text-white position-relative play play-iconbar"></i> نمایش مدیا</a></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="watch-video mt-4 pt-2 animated fadeInUpBig animation-delay-5">
+                                                    <span class="w3-padding w3-green w3-text-white w3-round-large">  <a href="@Model.productViewModel.Link" class="video-play-icon watch text-white mb-2 ml-2"><i class="mdi mdi-play play-icon-circle text-center d-inline-block mr-2 rounded-pill text-white position-relative play play-iconbar"></i> نمایش مدیا</a></span>
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+                                </div><!--end col-->
+                            </div>
+                        </div>
+                        <div class="content p-4">
+                            <h6><i class="mdi mdi-tag text-primary mr-1"></i>@Model.productViewModel.Tages</h6>
+                            <p class="text-muted mt-3">@Html.Raw(Model.productViewModel.Description) </p>
+                            <div class="post-meta mt-3">
+                                <ul class="list-unstyled mb-0">
+
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="mdi mdi-comment-outline mr-1"></i>@Model.comments.Count()</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Blog Comment STart -->
+                    @await Component.InvokeAsync("UserCommentes", new { @id = @Model.Id })
+                    <!-- Blog Comment End -->
+                    @await Component.InvokeAsync("RelatedPostes", new { id = @Model.Id, cont = 2 })
+
+                    <!-- Blog Send Comment STart -->
+                    <div class="mt-4 pt-2 p-4 shadow rounded">
+                        <h4 class="page-title pb-3">ارسال نظر :</h4>
+                        <!--Start form-->
+                        <form id="FormComment" name="FormComment" asp-action="AddComment" method="post">
+                            <div class="row"> 
+                            <input type="hidden" name="ProdoctId" value="@Model.Id"/>
+                                <div class="col-md-12">
+                                    <div class="form-group position-relative">
+                                        <label>نظر شما</label>
+                                        <i class="mdi mdi-comment-outline ml-3 icons"></i>
+                                        <textarea id="CommentMsg" placeholder="نظر شما" rows="5" name="CommentMsg" class="form-control pl-5" required=""></textarea>
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>نام <span class="text-danger">*</span></label>
+                                        <i class="mdi mdi-account ml-3 icons"></i>
+                                        <input id="Name" name="Name" type="text" placeholder="نام" class="form-control pl-5" required="">
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>ایمیل شما <span class="text-danger">*</span></label>
+                                        <i class="mdi mdi-email ml-3 icons"></i>
+                                        <input id="Email" type="email" placeholder="ایمیل" name="Email" class="form-control pl-5" required="">
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-12" style="font-family:Tahoma;">
+                                    <div class="form-group">
+                                        <div class="input-group text-right col-12 col-md-12">
+
+                                            <dnt-captcha asp-captcha-generator-max="50"
+                                                         asp-captcha-generator-min="10"
+                                                         asp-captcha-generator-language="Persian"
+                                                         asp-captcha-generator-display-mode="SumOfTwoNumbersToWords"
+                                                         asp-use-relative-urls="true"
+                                                         asp-placeholder="کد را وارد نمائید"
+                                                         asp-validation-error-message="عبارت را محاسبه و وارد نمائید"
+                                                         asp-font-name="Tahoma"
+                                                         asp-font-size="20"
+                                                         asp-fore-color="#333333"
+                                                         asp-back-color="#F7F9B8"
+                                                         asp-text-box-class="text-box form-control"
+                                                         asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'></span></span>{0}"
+                                                         asp-validation-message-class="text-danger"
+                                                         asp-refresh-button-class="fas fa-redo btn-sm"
+                                                         asp-use-noise="false"
+                                                         asp-dir="rtl" />
+
+
+
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-12">
+                                    <div class="send">
+                                        <button type="submit" id="SendComment" class="btn btn-primary w-100">ارسال نظر</button>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </form>
+                        <!--end form-->
+                        <!-- Blog Send Comment End -->
+                    </div>
+                </div>
+            </div>
+            <!-- BLog End -->
+            <!-- START SIDEBAR -->
+            <div class="col-lg-4 col-md-5 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="sidebar mt-sm-30 p-4 rounded shadow">
+                    <!-- SEARCH -->
+                    <div class="widget mb-4 pb-2">
+                        <h4 class="widget-title">جستجو</h4>
+                        <div id="search2" class="widget-search mt-4 mb-0">
+                            <form role="search" method="get" id="searchform" class="searchform">
+                                <div>
+                                    <input type="text" class="border rounded" name="s" id="s" placeholder="جستجوی کلمه کلیدی...">
+                                    <input type="submit" id="searchsubmit" value="جستجو">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- SEARCH -->
+                    @await Component.InvokeAsync("SideBarBlog")
+                    <!-- SOCIAL -->
+                    <div class="widget">
+                        <h4 class="widget-title font_W_titr">دنبال کنید ما را در</h4>
+                        <ul class="list-unstyled social-icon mt-4 mb-0">
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-vimeo"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- SOCIAL -->
+                </div>
+            </div><!--end col-->
+            <!-- END SIDEBAR -->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<!-- Blog End -->
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+        <header class="w3-container w3-teal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+            <h2 class="mr-5 mt-5">پیغام</h2>
+        </header>
+        <div class="w3-container">
+            <p class="w3-round-medium w3-lime w3-margin w3-padding-16"><span> عملیات موفق بود </span> </p>
+            <span class="w3-round-medium w3-padding w3-lime font_IRANSans">آیا از متن وارد شده اطمینان دارید ؟</span>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/SweetAlert/sweetalert2.js"></script>
+    <script src="~/SweetAlert/polyfill.js.js"></script>
+    <script>
+        $("#FormComment").submit(function (e) {
+            e.preventDefault();
+            var form = $(this);
+            Swal.fire({
+                title: ` <span class="w3-round-medium w3-padding w3-lime font_IRANSans">آیا از متن وارد شده اطمینان دارید ؟</span>`,
+                text: '',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'تایید',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.value) {
+                    
+                        var url = '/Blog/AddComment';
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(), // serializes the form's elements.
+                            success: function (data) {
+                                if (data.isSuccess) {
+                                    $(".dntCaptcha").load(window.location.href + " .dntCaptcha");  
+                                    Swal.fire(
+                                        ' موفق',
+                                        data.message,
+                                        'success'
+                                    )
+                                   
+                                }
+                                else {
+                                    $(".dntCaptcha").load(window.location.href + " .dntCaptcha");  
+                                    Swal.fire(
+                                        'نا موفق ',
+                                        data.message,
+                                        'error'
+                                    )
+                                }
+                               
+                            }
+                        });
+
+
+               
+
+
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        ' ارسال نظر توسط شما لغو گردید ',
+                        '',
+                        'error'
+                    )
+                }
+            })
+            //w3.show('#id01');
+        });
+
+
+    </script>
+}

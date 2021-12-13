@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>گروه تواشیح و همسرایی نورالشهداء</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="گروه تواشیح و همسرایی نورالشهداء" />
+    <meta name="keywords" content="تواشیح,هم سرایی,مذهبی, ملی,گروه,گروه تواشی,گروه تواشیح,نماهنگ,کلیپ,عکس,وحید مهاجر" />
+    <meta content="Shreethemes" name="author" />
+    <meta name="google-site-verification" content="pkqVOZpv0neiR6XUQHs5Nomlcxa-reNvy37Nf27Q-Kw" />
+    <!-- favicon -->
+    <link href="~/Landrick/layouts/images/LogoWeb.ico" rel="shortcut icon">
+    <!-- Bootstrap -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <!-- Icons -->
+    <link href="~/Landrick/layouts/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="~/Landrick/layouts/css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <!-- Slider -->
+    <link href="~/Landrick/layouts/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/owl.theme.default.min.css" rel="stylesheet" />
+    <!-- Animation -->
+    <link href="~/Landrick/layouts/css/animate.css" rel="stylesheet" />
+    <link href="~/Landrick/layouts/css/animations-delay.css" rel="stylesheet" />
+    <!-- Main css -->
+    <link href="~/Landrick/layouts/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Landrick/layouts/css/style-rtl.css" rel="stylesheet" type="text/css" />
+
+    <!-- W33 css -->
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- FONTe css -->
+    <link href="~/Font/Fontes.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+</head>
+
+<body>
+    
+    @RenderSection("headerNavigation", false)
+
+
+    @RenderBody()
+    @RenderSection("footer", false)
+
+
+
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+    <!-- Back to top -->
+    <a href="~/Landrick/layouts/#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
+    </a>
+    <!-- Back to top -->
+    <!-- javascript -->
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/Landrick/layouts/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Landrick/layouts/js/jquery.easing.min.js"></script>
+    <script src="~/Landrick/layouts/js/scrollspy.min.js"></script>
+    <!-- Magnific Popup -->
+    <script src="~/Landrick/layouts/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Landrick/layouts/js/magnific.init.js"></script>
+
+    <script src="~/Landrick/layouts/js/isotope.js"></script>
+    <script src="~/Landrick/layouts/js/portfolio.init.js"></script>
+
+    <!-- SLIDER -->
+    <script src="~/Landrick/layouts/js/owl.carousel.min.js"></script>
+    <script src="~/Landrick/layouts/js/owl.init.js"></script>
+    <!-- Main Js -->
+    <script src="~/Landrick/layouts/js/app.js"></script>
+    <!-- W33 js -->
+    <script src="~/W3/w3.js"></script>
+    @RenderSection("Scripts", false)
+
+<script>
+
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 50) {
+                $("#LogoWeb").hide()
+                $("#LoginBtn").hide()
+                $("#GroupGorani").hide()
+                $("#UserAuthName").hide()
+                $("#AdminPanel").hide()
+                $("#SignOut").hide()
+                $(".toplogo").hide()
+            }
+            else {
+                $("#LogoWeb").show();
+                $("#LoginBtn").show()
+                $("#GroupGorani").show()
+                $("#UserAuthName").show()
+                $("#AdminPanel").show()
+                $("#SignOut").show()
+                $(".toplogo").show()
+           }
+           
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,447 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>گروه تواشیح و همسرایی نورالشهداء</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="گروه تواشیح و همسرایی نورالشهداء" />
+    <meta name="keywords" content="تواشیح,هم سرایی,مذهبی, ملی,گروه,گروه تواشی,گروه تواشیح,نماهنگ,کلیپ,عکس,وحید مهاجر" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>پنل مدیریت | داشبورد اول</title>
+    <!-- favicon -->
+    <link href="~/Landrick/layouts/images/LogoWeb.ico" rel="shortcut icon">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="~/Landrick/layouts/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/fontawesome-free-5.13.1-web/css/all.css" rel="stylesheet" />
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/dist/css/adminlte.min.css">
+    <link href="~/css/Font.css" rel="stylesheet" />
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    @*<link href="~/PersianAdminLTE-master/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">*@
+    <!-- bootstrap rtl -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/dist/css/bootstrap-rtl.min.css">
+    <!-- template rtl version -->
+    <link rel="stylesheet" href="~/PersianAdminLTE-master/dist/css/custom-style.css">
+    @RenderSection("Styles", false)
+</head>
+<body class="hold-transition sidebar-mini">
+
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="~/Home/Index" class="nav-link">خانه</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">تماس</a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="جستجو" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav mr-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="~/PersianAdminLTE-master/#">
+                        <i class="fa fa-comments-o"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/PersianAdminLTE-master/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 ml-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        کاربر ادمین
+                                        <span class="float-left text-sm text-danger"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">با من تماس بگیر لطفا...</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 ساعت قبل</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="~/PersianAdminLTE-master/#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/PersianAdminLTE-master/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle ml-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        کامبیز زارع
+                                        <span class="float-left text-sm text-muted"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">من پیامتو دریافت کردم</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 ساعت قبل</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="~#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/PersianAdminLTE-master/dist/img/avatar5.png" alt="User Avatar" class="img-size-50 img-circle ml-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        محمد حسین صمدی
+                                        <span class="float-left text-sm text-warning"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">پروژه تون عالی بود مرسی واقعا</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i>4 ساعت قبل</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">مشاهده همه پیام‌ها</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="~/PersianAdminLTE-master/#">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
+                        <span class="dropdown-item dropdown-header">15 نوتیفیکیشن</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa fa-envelope ml-2"></i> 4 پیام جدید
+                            <span class="float-left text-muted text-sm">3 دقیقه</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa fa-users ml-2"></i> 8 درخواست
+                            <span class="float-left text-muted text-sm">12 ساعت</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa fa-file ml-2"></i> 3 گزارش جدید
+                            <span class="float-left text-muted text-sm">2 روز</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">مشاهده همه نوتیفیکیشن</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="false" href="#">
+                        <i class="fa fa-th-large"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="~/PersianAdminLTE-master/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">پنل مدیریت</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar" style="direction: ltr">
+                <div style="direction: rtl">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="~/PersianAdminLTE-master/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">کاربر ادمین</a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <p>
+                                        مدیریت محتوا
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="Poduct" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p> محتوا های در انتظار تایید</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="PoductConfimated" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p> محتوا های تایید شده</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="CreatePoduct" class="nav-link">
+                                            <i class="mdi mdi-pencil-plus-outline nav-item"></i>
+                                            <p>افزودن محتوا</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <p>
+                                        مدیریت کاربران
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Users" asp-action="ManegeUser" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks mdi-logout nav-item"></i>
+                                            <p> کاربر ها</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Users" asp-action="Register" class="nav-link">
+                                            <i class="mdi mdi-account-multiple-plus-outline ml-3 icons nav-item"></i>
+                                            <p> ثبت کاربر</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <p>
+                                        مدیریت دسته بندی
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p> دسته بندی ها</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Categories" asp-action="Create" class="nav-link">
+                                            <i class="mdi mdi-account-multiple-plus-outline ml-3 icons nav-item"></i>
+                                            <p> ثبت دسته بندی</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <p>
+                                        مدیریت نظرات
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Nazarat" asp-action="ManegeNazarat" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p>نظرات در انتظار تایید </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Nazarat" asp-action="ConfirmetedNazarat" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p>نظرات تایید شده</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <p>
+                                        مدیریت کامنت ها
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Comment" asp-action="ManegeComment" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p>کامنت های در انتظار تایید</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Comment" asp-action="ConfirmetedComment" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p>کامنت ها تایید شده</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <p>
+                                        مدیریت  پیشنهاد ها
+                                        <i class="right fa fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-area="Admin" asp-controller="Order" asp-action="ManegeOrder" class="nav-link">
+                                            <i class="mdi mdi-format-list-checks nav-item"></i>
+                                            <p>پیشنهاد ها</p>
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                            <li class="nav-header">برچسب‌ها</li>
+                            <li class="nav-item">
+                                <a href="~/PersianAdminLTE-master/#" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-danger"></i>
+                                    <p class="text">مهم</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="~/PersianAdminLTE-master/#" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-warning"></i>
+                                    <p>هشدار</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="~/PersianAdminLTE-master/#" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-info"></i>
+                                    <p>اطلاعات</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+
+                        </div><!-- /.col -->
+
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>CopyLeft &copy; 2021 <a href="#">گروه کاردین</a>.</strong>
+        </footer>
+
+        <!-- Control Sidebar -->
+        @*<aside class="control-sidebar control-sidebar-dark">
+
+            </aside>*@
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/PersianAdminLTE-master/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    @*<script src="~/PersianAdminLTE-master/https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>*@
+    <script src="~/PersianAdminLTE-master/dist/js/plugins/jquery/jquery.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    @*<script>$.widget.bridge('uibutton', $.ui.button)</script>*@
+    <!-- Bootstrap 4 -->
+    <script src="~/PersianAdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Morris.js charts -->
+    @*<script src="~/PersianAdminLTE-master/https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>*@
+
+    <script src="~/PersianAdminLTE-master/plugins/morris/morris.js"></script>
+    <!-- Sparkline -->
+    <script src="~/PersianAdminLTE-master/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="~/PersianAdminLTE-master/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/PersianAdminLTE-master/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/PersianAdminLTE-master/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    @*<script src="~/PersianAdminLTE-master/https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>*@
+    <script src="~/PersianAdminLTE-master/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/PersianAdminLTE-master/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/PersianAdminLTE-master/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/PersianAdminLTE-master/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/PersianAdminLTE-master/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/PersianAdminLTE-master/dist/js/pages/dashboard.js"></script>*@
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/PersianAdminLTE-master/dist/js/demo.js"></script>
+    <!--fontawesome-->
+    <script src="~/fontawesome-free-5.13.1-web/js/all.js"></script>
+    <script src="~/fontawesome-free-5.13.1-web/js/fontawesome.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

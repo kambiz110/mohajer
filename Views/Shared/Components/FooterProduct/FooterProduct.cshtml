@@ -1,0 +1,24 @@
+﻿@using Mohajer.ViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<ProductViewModel>
+@using Mohajer.Useful.Static
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <h4 class="text-light footer-head">آخرین پست ها</h4>
+        <ul class="list-unstyled footer-list mt-4">
+            @foreach (var item in Model)
+            {
+                <li>
+
+                    <div class="clearfix post-recent row">
+                        <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="@item.ImageResized" class="img-fluid w3-circle w3-border-blue w3-bottombar" width="50" height="50"></a></div>
+                        <div class="post-recent-content float-left"><a asp-action="BlogDetail" asp-controller="Blog" asp-area="" asp-route-id="@item.Id">@item.Title.ToCuteTitleWithCounter(25)</a><span class="text-muted mt-2"> </span></div>
+                    </div>
+                </li>
+            }
+
+
+        </ul>
+    </div><!--end col-->
+}

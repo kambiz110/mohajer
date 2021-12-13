@@ -1,0 +1,256 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, DNTCaptcha.Core
+@using Mohajer.Useful.Static
+@{
+    ViewData["Title"] = "Page_Contacts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section headerNavigation {
+    @{await Html.RenderPartialAsync("_NavigationHeader");}
+}
+@section footer {
+    @{await Html.RenderPartialAsync("_Footer");}
+}
+@section Styles{
+    <link href="~/SweetAlert/sweetalert2.css" rel="stylesheet" type="text/css" />
+}
+<section class="section pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="contact-detail text-center">
+                    <div class="icon">
+                        <img src="~/Landrick/layouts/images/icon/bitcoin.svg" alt="">
+                    </div>
+                    <div class="content mt-3">
+                        <h4 class="title font-weight-bold">تلفن</h4>
+                        <p class="text-muted">شما می توانید با استفاده از شماره تماس زیر برای هماهنگی برای اجرا با ما در تماس باشید</p>
+                        <a href="tel:@Aboute_page.AboutePhon" class="text-primary">@Aboute_page.AboutePhon</a>
+                    </div>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="contact-detail text-center">
+                    <div class="icon">
+                        <img src="~/Landrick/layouts/images/icon/Email.svg" alt="">
+                    </div>
+                    <div class="content mt-3">
+                        <h4 class="title font-weight-bold">ایمیل</h4>
+                        <p class="text-muted">صندوق پست الکترونیکی برای هماهنگی با گروه تواشیح و همسرایی نورالشهداء</p>
+                        <a href="@Aboute_page.AbouteEmail" class="text-primary">@Aboute_page.AbouteEmail</a>
+                    </div>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="contact-detail text-center">
+                    <div class="icon">
+                        <img src="~/Landrick/layouts/images/icon/location.svg" alt="">
+                    </div>
+                    <div class="content mt-3">
+                        <h4 class="title font-weight-bold">موقعیت</h4>
+                        <p class="text-muted">@Aboute_page.AbouteAdress</p>
+                        <a href=@Aboute_page.AbouteMap class="video-play-icon h6 text-primary">نمایش روی گوگل مپ</a>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-md-1">
+                <div class="pt-5 pb-5 p-4 bg-light shadow rounded">
+                    <h4> ثبت سفارش</h4>
+                    <div class="custom-form mt-4">
+                        <div id="message"></div>
+
+
+                        <form method="post" action="/Admin/Order/AddOrder" name="contact-form" id="FormSendOrder" class="was-validated">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>نام شما <span class="text-danger">*</span></label>
+                                        <i class="mdi mdi-account ml-3 icons"></i>
+                                        <input name="Full_Name" id="Full_Name" type="text" class="form-control pl-5" placeholder="نام شما :"  required>
+                                          <div class="valid-feedback">معتبر.</div>
+                                          <div class="invalid-feedback">هنوز هیچ مقداری وارد نشده است.</div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>تلفن شما <span class="text-danger">*</span></label>
+                                        <i class="mdi mdi-phone ml-3 icons"></i>
+                                        <input name="Phone" id="Phone" type="text" class="form-control pl-5" placeholder="تلفن  :" required>
+                                          <div class="valid-feedback">معتبر.</div>
+                                         <div class="invalid-feedback">هنوز هیچ مقداری وارد نشده است.</div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-12">
+                                    <div class="form-group position-relative">
+                                        <label>موضوع</label>
+                                        <i class="mdi mdi-book ml-3 icons"></i>
+                                        <input name="Subject" id="Subject" class="form-control pl-5" placeholder="موضوع شما :" required>
+                                          <div class="valid-feedback">معتبر.</div>
+                                          <div class="invalid-feedback">هنوز هیچ مقداری وارد نشده است.</div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-12 form-group">
+                                    <div class="form-group position-relative">
+                                        <label>نظرات</label>
+                                        <i class="mdi mdi-comment-text-outline ml-3 icons"></i>
+                                        <textarea name="Description" id="Description" rows="4" class="form-control pl-5" pattern=".{10,500}"  required></textarea>
+                                          <div class="valid-feedback">معتبر.</div>
+                                          <div class="invalid-feedback">هنوز هیچ مقداری وارد نشده است.</div>
+                                    </div>
+                                </div>
+                            </div><!--end row-->
+                            <div class="col-md-12" style="font-family:Tahoma;">
+                                <div class="form-group">
+                                    <div class="input-group text-right col-12 col-md-12">
+
+                                        <dnt-captcha asp-captcha-generator-max="50"
+                                                     asp-captcha-generator-min="10"
+                                                     asp-captcha-generator-language="Persian"
+                                                     asp-captcha-generator-display-mode="SumOfTwoNumbersToWords"
+                                                     asp-use-relative-urls="true"
+                                                     asp-placeholder="کد را وارد نمائید"
+                                                     asp-validation-error-message="عبارت را محاسبه و وارد نمائید"
+                                                     asp-font-name="Tahoma"
+                                                     asp-font-size="20"
+                                                     asp-fore-color="#333333"
+                                                     asp-back-color="#F7F9B8"
+                                                     asp-text-box-class="text-box form-control"
+                                                     asp-text-box-template="<span class='input-group-prepend'><span class='form-group-text'></span></span>{0}"
+                                                     asp-validation-message-class="text-danger"
+                                                     asp-refresh-button-class="fas fa-redo btn-sm"
+                                                     asp-use-noise="false"
+                                                     asp-dir="rtl" />
+
+
+
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck110" name="customCheck110" required>
+                                        <label class="custom-control-label" for="customCheck110">@StaticHome.Confirmed</label>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary btn-block" value="ارسال پیام">
+                                    <div id="simple-msg"></div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </form><!--end form-->
+                    </div><!--end custom-form-->
+                </div>
+            </div><!--end col-->
+
+            <div class="col-lg-7 col-md-6 order-1 order-md-2">
+                <img src="~/Landrick/layouts/images/contact.png" class="img-fluid" alt="">
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="container-fluid mt-100 mt-60">
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="map">
+                    <iframe src=@Aboute_page.AbouteMap style="border:0" allowfullscreen=""></iframe>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/SweetAlert/sweetalert2.js"></script>
+    <script src="~/SweetAlert/polyfill.js.js"></script>
+    <script>
+        $("#FormSendOrder").submit(function (e) {
+            e.preventDefault();
+
+            if ($("#FormSendOrder input:checkbox:checked").length > 0) {
+                if ($('#FormSendOrder').valid()) {
+
+                    var form = $(this);
+                    Swal.fire({
+                        title: ` <span class="w3-round-medium w3-padding w3-lime font_IRANSans">آیا از متن وارد شده اطمینان دارید ؟</span>`,
+                        text: '',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'تایید',
+                        cancelButtonText: 'انصراف'
+                    }).then((result) => {
+                        if (result.value) {
+
+                            var url = '/Admin/Order/AddOrder';
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                data: form.serialize(), // serializes the form's elements.
+                                success: function (data) {
+                                    if (data.isSuccess) {
+                                        $(".dntCaptcha").load(window.location.href + " .dntCaptcha");
+                                        Swal.fire(
+                                            ' موفق',
+                                            data.message,
+                                            'success'
+                                        )
+
+                                    }
+                                    else {
+                                        $(".dntCaptcha").load(window.location.href + " .dntCaptcha");
+                                        Swal.fire(
+                                            'نا موفق ',
+                                            data.message,
+                                            'error'
+                                        )
+                                    }
+
+                                }
+                            });
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            Swal.fire(
+                                ' ارسال نظر توسط شما لغو گردید ',
+                                '',
+                                'error'
+                            )
+                        }
+                    })
+                }
+                else {
+                    Swal.fire(
+                        'نا موفق ',
+                        "لطفا فرم را به درستی تکمیل نمائید",
+                        'error'
+                    )
+                }
+
+            }
+            else {
+                Swal.fire(
+                    'نا موفق ',
+                    "تیک تایید ضوابط اخلاقی را نزده اید",
+                    'error'
+                )
+            }
+
+            //w3.show('#id01');
+        });
+
+
+    </script>
+}

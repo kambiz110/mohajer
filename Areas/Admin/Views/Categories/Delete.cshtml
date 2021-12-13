@@ -1,0 +1,55 @@
+﻿@model Mohajer.ViewModel.CategoryViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+}
+<h2>
+    <a asp-action="#"><span class="w3-btn w3-round w3-animate-bottom w3-khaki font_W_koodak">حذف دسته بندی</span></a>
+</h2>
+
+<h3 class="font_W_koodak">آیا از حذف خود مطمئن هستید ؟</h3>
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 h2 font_W_titr">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="w3-button w3-round w3-lime">  @Html.DisplayFor(model => model.Title)  </span>
+           
+        </dd>
+        <dt class="col-sm-2 h2 font_W_titr">
+       
+            @Html.DisplayNameFor(model => model.ParentCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                if (Model.ParentCategory == null)
+                {
+<span class="w3-button w3-round w3-blue"> دسته بندی اصلی</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.ParentCategory.Title)
+                }
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> | <a asp-action="Index" class="w3-btn w3-round w3-animate-bottom w3-blue-gray">بازگشت به لیست دسته بندی ها</a>
+
+
+    </form>
+
+</div>

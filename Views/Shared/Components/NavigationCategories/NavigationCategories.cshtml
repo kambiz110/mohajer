@@ -1,0 +1,12 @@
+﻿@using Mohajer.Entity
+@model IEnumerable<Category>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <li><a asp-area="" asp-controller="Blog" asp-action="BlogCategory" asp-route-categoryId="@item.Id">@item.Title</a></li>
+    }
+}

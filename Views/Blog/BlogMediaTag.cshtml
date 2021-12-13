@@ -1,0 +1,158 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.Useful.Static
+@using Mohajer.Service.Product.Dto
+@model ProductForUserDto
+@{
+    ViewData["Title"] = "BlogMediaTag";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headerNavigation {
+    @{await Html.RenderPartialAsync("_NavigationHeader");}
+}
+@section footer {
+    @{await Html.RenderPartialAsync("_Footer");}
+}
+
+<section class="bg-half bg-light">
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 text-center">
+                        <div class="page-next-level">
+                            <h4 class="title">    بلاگ   </h4>
+                            <ul class="page-next d-inline-block bg-white shadow p-2 pl-4 pr-4 rounded mb-0">
+                                <li><a asp-action="Index" asp-controller="Home" class="text-uppercase font-weight-bold text-dark">@StaticBlog.Hmoe</a></li>
+                                <li><a href="#" class="text-uppercase font-weight-bold text-dark">@StaticBlog.Blog</a></li>
+                                <li>
+                                    <span class="text-uppercase text-primary font-weight-bold">@StaticBlog.BlogWithMedia</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>  <!--end col-->
+                </div><!--end row-->
+            </div> <!--end container-->
+        </div>
+    </div>
+</section><!--end section-->
+<!-- Hero End -->
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+<!-- Blog STart -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <!-- BLog Start -->
+            <div class="col-lg-8 col-md-6">
+                <div class="mr-lg-2">
+                    <div class="row">
+                        @if (Model.Products != null)
+                        {
+                            foreach (var item in Model.Products)
+                            {
+                                <div class="col-lg-6 mb-4 pb-2">
+                                    <div class="blog position-relative overflow-hidden shadow rounded">
+                                        <div class="position-relative">
+                                            <img src="@item.ImageResized" class="img-fluid rounded-top" alt="">
+                                            <div class="overlay rounded-top bg-dark"></div>
+                                        </div>
+                                        <div class="content p-4">
+                                            <h4><a asp-area="" asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.Id" class="title text-dark">@item.Title</a></h4>
+                                            <div class="post-meta mt-3">
+                                                <a asp-area="" asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.Id" class="text-muted float-right readmore">@StaticBlog.See <i class="mdi mdi-chevron-right"></i></a>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-primary comments"><i class="mdi mdi-tag-outline mr-1"></i>@item.CommentCount.ToContentType()</a></li>
+                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="mdi mdi-comment-outline mr-1"></i>@item.CountentType</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="author">
+                                            <small class="text-light user d-block"><i class="mdi mdi-account"></i> @StaticNavigation.GroupGorani</small>
+                                            <small class="text-light date"><i class="mdi mdi-calendar-check"></i> @item.Updated.ToPersianDateStrFarsi()</small>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            }
+                        }
+
+                        <!-- PAGINATION START -->
+                        <div class="col-11">
+                            @if (Model.PagerDto != null)
+                            {
+                                <paging page-no="@Model.PagerDto.PageNo"
+                                        page-size="@Model.PagerDto.PageSize"
+                                        total-records="@Model.PagerDto.TotalRecords"
+                                        show-prev-next="true"
+                                        show-total-pages="false"
+                                        show-total-records="false"
+                                        show-page-size-nav="true"
+                                        show-first-numbered-page="true"
+                                        show-last-numbered-page="true"
+                                        query-string-key-page-no="PageNo"
+                                        query-string-key-page-size="PageSize"
+                                        query-string-key-page-type="type"
+                                        text-total-pages="صفحه"
+                                        text-total-records="رکورد"
+                                        text-first="اولین"
+                                        text-last="آخرین"
+                                        text-previous="&lsaquo;"
+                                        text-next="&rsaquo;"
+                                        sr-text-first="اولین"
+                                        sr-text-last="آخرین"
+                                        sr-text-previous="قبلی"
+                                        sr-text-next="بعدی"
+                                        gap-size="2">
+                                </paging>
+                            }
+                        </div><!--end col-->
+                        <!-- PAGINATION END -->
+                    </div>
+                </div>
+            </div>
+            <!-- BLog End -->
+            <!-- START SIDEBAR -->
+            <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="sidebar mt-sm-30 p-4 rounded shadow">
+                    <!-- SEARCH -->
+                    <div class="widget mb-4 pb-2">
+                        <h4 class="widget-title">جستجو</h4>
+                        <div id="search2" class="widget-search mt-4 mb-0">
+                            <form role="search" method="get" id="searchform" class="searchform">
+                                <div>
+                                    <input type="text" class="border rounded" name="s" id="s" placeholder="جستجوی کلمه کلیدی...">
+                                    <input type="submit" id="searchsubmit" value="جستجو">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- SEARCH -->
+                    @await Component.InvokeAsync("SideBarBlog")
+
+
+                    <!-- SOCIAL -->
+                    <div class="widget">
+                        <h4 class="widget-title">دنبال کنید ما را در</h4>
+                        <ul class="list-unstyled social-icon mt-4 mb-0">
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-vimeo"></i></a></li>
+                            <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- SOCIAL -->
+                </div>
+            </div><!--end col-->
+            <!-- END SIDEBAR -->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->

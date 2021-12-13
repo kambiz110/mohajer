@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Mohajer.ViewModel.CategoryViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+}
+
+<h2>
+    <a asp-action="Create"><span class="w3-btn w3-round w3-animate-bottom w3-khaki font_W_koodak">افزودن دسته بندی</span></a>
+</h2>
+<table class="table" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><span class="w3-btn w3-round w3-lime">ویرایش</span></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><span class="w3-btn w3-round w3-cyan">حذف</span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+
+    <!-- DataTables -->
+
+    <script src="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.js"></script>
+    TableProduct
+    <script>
+        $(function () {
+            $("#DataTable").DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+                "bPaginate": false,
+                "paging": false,
+                "searching": false,
+            });
+        });
+    </script>
+}

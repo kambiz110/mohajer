@@ -1,0 +1,129 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, LazZiya.TagHelpers
+@using Mohajer.Service.Nazarat.Dto
+@model ListNazaratPagerDto
+@using Mohajer.Useful.Static
+@{
+    ViewData["Title"] = "ManegeNazarat";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles {
+
+    <link href="~/W3/W3.CSS" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.css" rel="stylesheet" />
+}
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title font_W_koodak">@StaticNazarat.ManegedNazaratLst</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive-sm">
+                    <table id="TableProduct" class="table">
+                        <thead class="thead-dark">
+                            <tr class="center-block" style="text-align:center;" align="center">
+                                <th class="w-15 center-block">@Html.DisplayNameFor(model => Model.nazarShows[0].Name)</th>
+                                <th class="w-15 center-block">@Html.DisplayNameFor(model => Model.nazarShows[0].Email) </th>
+                                <th class="w-45 center-block">@Html.DisplayNameFor(model => Model.nazarShows[0].Comment)</th>
+                                <th class="w-25 center-block">عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.nazarShows != null)
+                            {
+                                foreach (var item in Model.nazarShows)
+                                {
+                                    <tr style="text-align: center; vertical-align: middle;" class="">
+
+                                        <td class="">@item.Name</td>
+                                        <td class="">@Html.Raw(item.Email)</td>
+                                        <td class="">@Html.Raw(item.Comment)</td>
+
+                                        <td class="">
+                                            <a asp-action="ChangeStatusNazar" asp-route-Id="@item.Id"><span class="w3-btn w3-round w3-green">تأیید کردن</span></a>
+                                            |
+                                            <a asp-action="DeleteNazar" asp-route-Id="@item.Id"><span class="w3-btn w3-round w3-pink">حذف کردن</span></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td> <span class="text-danger font_IRANSans">موردی یافت نگردید</span></td>
+                                </tr>
+                            }
+
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+@if (Model.PagerDto != null)
+{
+    <paging page-no="@Model.PagerDto.PageNo"
+            page-size="@Model.PagerDto.PageSize"
+            total-records="@Model.PagerDto.TotalRecords"
+            show-prev-next="true"
+            show-total-pages="true"
+            show-total-records="true"
+            show-page-size-nav="true"
+            show-first-numbered-page="true"
+            show-last-numbered-page="true"
+            query-string-key-page-no="PageNo"
+            query-string-key-page-size="PageSize"
+            text-total-pages="صفحه"
+            text-total-records="رکورد"
+            text-first="&laquo;"
+            text-last="&raquo;"
+            text-previous="&lsaquo;"
+            text-next="&rsaquo;"
+            sr-text-first="اولین"
+            sr-text-last="آخرین"
+            sr-text-previous="قبلی"
+            sr-text-next="بعدی"
+            gap-size="2">
+    </paging>
+}
+
+@section Scripts {
+
+    <!-- DataTables -->
+
+    <script src="~/PersianAdminLTE-master/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/PersianAdminLTE-master/plugins/datatables/jquery.dataTables.js"></script>
+    TableProduct
+    <script>
+        $(function () {
+            $("#example").DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+                "bPaginate": false,
+                "paging": false,
+                "searching": false,
+            });
+        });
+    </script>
+}
+
+
